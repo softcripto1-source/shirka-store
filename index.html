@@ -1,632 +1,816 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shirka AI Store - Productos Digitales Premium</title>
-<meta name="description" content="Compra productos digitales premium: prompts para IA, scripts de productividad y herramientas de trading crypto. Paga con PayPal o crypto.">
-<meta name="keywords" content="prompts IA, scripts Python, trading crypto, productos digitales, DeepSeek prompts">
+<title>Shirka AI Store — Productos Digitales Premium</title>
+<meta name="description" content="Herramientas potenciadas por IA para desarrolladores, traders y creadores. Prompts expertos, scripts de productividad y trading crypto.">
+<meta name="keywords" content="prompts IA, scripts Python, trading crypto, productos digitales, DeepSeek, productividad">
 <meta property="og:title" content="Shirka AI Store">
 <meta property="og:description" content="Productos digitales premium potenciados por inteligencia artificial">
 <meta property="og:url" content="https://softcripto1-source.github.io/shirka-store/">
+<meta name="theme-color" content="#6C5CE7">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
+/* ============================================
+   UI/UX PRO MAX — Design System
+   Paleta Foxhole — Identidad Shirka
+   Inspiración: Linear, Claude, Shopify
+   ============================================ */
 
-:root {
-  --bg: #070b14;
-  --bg2: #0b1220;
-  --bg3: #0f1a2e;
-  --border: #1a2a44;
-  --text: #e0e8f0;
-  --text2: #8ba3c7;
-  --accent: #00ccff;
-  --accent2: #00ffc8;
-  --accent3: #ffc800;
-  --gradient1: linear-gradient(135deg, #004488, #00ccff);
-  --gradient2: linear-gradient(135deg, #004433, #00ffc8);
-  --gradient3: linear-gradient(135deg, #554400, #ffc800);
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  /* Paleta Shirka */
+  --primary:#6C5CE7;
+  --primary-dark:#5541D9;
+  --primary-light:#A29BFE;
+  --primary-glow:rgba(108,92,231,0.25);
+  --secondary:#00CEC9;
+  --secondary-light:#81ECEC;
+  --accent-warm:#FF7675;
+
+  /* Superficies */
+  --canvas:#0A0A0F;
+  --canvas-alt:#0F0F1A;
+  --canvas-elevated:#161625;
+  --canvas-glass:rgba(22,22,37,0.75);
+  --canvas-warm:#12120E;
+
+  /* Tinta */
+  --ink:#F0EFFF;
+  --ink-secondary:#8E8EA0;
+  --ink-muted:#5C5C72;
+
+  /* Bordes */
+  --hairline:#1E1E32;
+  --hairline-hover:#2E2E4A;
+
+  /* Funcionales */
+  --success:#00B894;
+  --warning:#FDCB6E;
+  --error:#E17055;
+
+  /* Layout */
+  --radius-sm:6px;
+  --radius-md:10px;
+  --radius-lg:16px;
+  --radius-xl:20px;
+  --radius-pill:9999px;
+
+  /* Tipografía */
+  --font-sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+  --font-mono:'JetBrains Mono','SF Mono','Fira Code',monospace;
+
+  /* Sombras */
+  --shadow-sm:0 1px 2px rgba(0,0,0,0.3);
+  --shadow-md:0 4px 12px rgba(0,0,0,0.25);
+  --shadow-lg:0 12px 40px rgba(0,0,0,0.4);
+  --shadow-glow:0 0 20px var(--primary-glow);
+
+  /* Escala */
+  --space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;
+  --space-5:20px;--space-6:24px;--space-8:32px;--space-12:48px;
+  --space-16:64px;--space-20:80px;--space-24:96px;
+
+  /* z-index */
+  --z-base:0;--z-nav:50;--z-dropdown:60;--z-modal:100;--z-toast:1000;
 }
 
-body {
-  font-family: 'Inter', -apple-system, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.6;
-  overflow-x: hidden;
+/* ============================================
+   TYPOGRAPHY
+   ============================================ */
+html{font-size:16px;scroll-behavior:smooth}
+body{
+  font-family:var(--font-sans);
+  background:var(--canvas);
+  color:var(--ink);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden;
+}
+h1,h2,h3,h4{line-height:1.2;font-weight:700}
+h1{font-size:clamp(2.5rem,6vw,4.5rem);font-weight:800;letter-spacing:-0.03em}
+h2{font-size:clamp(1.8rem,4vw,2.8rem);letter-spacing:-0.02em;font-weight:700}
+h3{font-size:clamp(1.2rem,2.5vw,1.5rem);font-weight:600}
+a{color:var(--primary-light);text-decoration:none;transition:color 0.2s}
+a:hover{color:var(--primary)}
+:focus-visible{outline:2px solid var(--primary);outline-offset:2px;border-radius:var(--radius-sm)}
+
+/* ============================================
+   NAVBAR — Glassmorphism (Linear × Stripe)
+   ============================================ */
+nav{
+  position:fixed;top:0;left:0;right:0;
+  z-index:var(--z-nav);
+  display:flex;justify-content:space-between;align-items:center;
+  padding:var(--space-4) var(--space-6);
+  background:var(--canvas-glass);
+  backdrop-filter:blur(20px) saturate(1.5);
+  -webkit-backdrop-filter:blur(20px) saturate(1.5);
+  border-bottom:1px solid var(--hairline);
+}
+nav .logo{
+  display:flex;align-items:center;gap:var(--space-2);
+  font-weight:700;font-size:1.15rem;color:var(--ink);
+  letter-spacing:-0.02em;
+}
+nav .logo-mark{
+  width:28px;height:28px;
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
+  border-radius:var(--radius-sm);
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.8rem;font-weight:700;color:white;
+}
+nav .nav-links{display:flex;gap:var(--space-8);align-items:center}
+nav .nav-links a{
+  color:var(--ink-muted);font-size:0.9rem;font-weight:500;
+  transition:color 0.2s;position:relative;
+}
+nav .nav-links a::after{
+  content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;
+  background:var(--primary);transition:width 0.3s ease;border-radius:1px;
+}
+nav .nav-links a:hover{color:var(--ink)}
+nav .nav-links a:hover::after{width:100%}
+nav .nav-cta{
+  background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+  color:white!important;padding:var(--space-2) var(--space-5);
+  border-radius:var(--radius-pill);font-weight:600;font-size:0.85rem;
+  transition:all 0.2s ease;
+}
+nav .nav-cta:hover{
+  transform:translateY(-1px);
+  box-shadow:var(--shadow-glow);
 }
 
-/* HERO */
-.hero {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 2rem;
-  position: relative;
-  overflow: hidden;
+/* ============================================
+   HERO — Cinematic (Apple × Claude)
+   ============================================ */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;
+  padding:var(--space-6);position:relative;overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;z-index:0;
+  background:
+    radial-gradient(ellipse 60% 50% at 25% 40%, rgba(108,92,231,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 75% 60%, rgba(0,206,201,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 30% at 50% 80%, rgba(108,92,231,0.05) 0%, transparent 50%);
+}
+.hero-grid{
+  position:absolute;inset:0;z-index:0;opacity:0.03;
+  background-image:
+    linear-gradient(var(--hairline) 1px, transparent 1px),
+    linear-gradient(90deg, var(--hairline) 1px, transparent 1px);
+  background-size:60px 60px;
+  mask-image:radial-gradient(ellipse 70% 60% at center, black 30%, transparent 70%);
+  -webkit-mask-image:radial-gradient(ellipse 70% 60% at center, black 30%, transparent 70%);
+}
+.hero-content{position:relative;z-index:1;max-width:800px}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:var(--space-2);
+  background:var(--canvas-glass);border:1px solid var(--hairline-hover);
+  color:var(--primary-light);padding:var(--space-2) var(--space-5);
+  border-radius:var(--radius-pill);font-size:0.8rem;font-weight:500;
+  margin-bottom:var(--space-6);letter-spacing:0.3px;
+  backdrop-filter:blur(10px);
+}
+.hero-badge-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--success);animation:pulse-dot 2s ease-in-out infinite;
+}
+@keyframes pulse-dot{
+  0%,100%{opacity:1}
+  50%{opacity:0.4}
+}
+.hero h1{margin-bottom:var(--space-4);position:relative}
+.hero h1 .gradient-text{
+  background:linear-gradient(135deg,var(--primary-light),var(--primary),var(--secondary));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero p{
+  font-size:clamp(1rem,1.8vw,1.2rem);color:var(--ink-secondary);
+  max-width:580px;margin:0 auto var(--space-8);line-height:1.7;
+}
+.hero-actions{display:flex;gap:var(--space-3);justify-content:center;flex-wrap:wrap}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:var(--space-2);
+  background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+  color:white;padding:var(--space-3) var(--space-8);
+  border-radius:var(--radius-pill);font-weight:600;font-size:1rem;
+  border:none;cursor:pointer;transition:all 0.25s ease;
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px var(--primary-glow)}
+.btn-secondary{
+  display:inline-flex;align-items:center;gap:var(--space-2);
+  background:var(--canvas-glass);color:var(--ink);
+  padding:var(--space-3) var(--space-8);
+  border-radius:var(--radius-pill);font-weight:500;font-size:1rem;
+  border:1px solid var(--hairline-hover);cursor:pointer;
+  backdrop-filter:blur(10px);transition:all 0.25s ease;
+}
+.btn-secondary:hover{background:var(--canvas-elevated);border-color:var(--primary)}
+.hero-stats{
+  display:flex;gap:var(--space-12);margin-top:var(--space-16);
+  flex-wrap:wrap;justify-content:center;
+}
+.stat{text-align:center;position:relative}
+.stat:not(:last-child)::after{
+  content:'';position:absolute;right:calc(-1 * var(--space-6));
+  top:50%;transform:translateY(-50%);
+  width:1px;height:40px;background:var(--hairline);
+}
+.stat-value{font-size:2rem;font-weight:700;font-family:var(--font-mono);color:var(--primary-light)}
+.stat-label{font-size:0.85rem;color:var(--ink-muted);margin-top:var(--space-1)}
+
+/* ============================================
+   SECTION COMMON
+   ============================================ */
+.section{padding:var(--space-24) var(--space-6)}
+.section-inner{max-width:1100px;margin:0 auto}
+.section-header{text-align:center;margin-bottom:var(--space-16)}
+.section-header h2{margin-bottom:var(--space-3)}
+.section-header p{color:var(--ink-secondary);font-size:1.05rem;max-width:500px;margin:0 auto}
+
+/* ============================================
+   PRODUCTS — Bento Grid (Linear × Shopify)
+   ============================================ */
+.products-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:var(--space-5);
+}
+.product-card{
+  background:var(--canvas-elevated);
+  border:1px solid var(--hairline);
+  border-radius:var(--radius-lg);
+  overflow:hidden;
+  transition:all 0.3s ease;
+  display:flex;flex-direction:column;
+}
+.product-card:hover{
+  border-color:var(--hairline-hover);
+  transform:translateY(-3px);
+  box-shadow:0 12px 40px rgba(0,0,0,0.3);
+}
+.product-card.featured{
+  border-color:var(--primary);
+  box-shadow:0 0 0 1px var(--primary), var(--shadow-md);
+  position:relative;
+}
+.product-card.featured::before{
+  content:'MÁS VENDIDO';
+  position:absolute;top:var(--space-3);right:var(--space-3);
+  z-index:1;
+  background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+  color:white;font-size:0.65rem;font-weight:700;
+  padding:var(--space-1) var(--space-3);
+  border-radius:var(--radius-pill);
+  letter-spacing:0.5px;
+}
+.product-image-wrap{
+  position:relative;overflow:hidden;
+  aspect-ratio:16/9;background:var(--canvas-alt);
+}
+.product-image-wrap img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform 0.5s ease;
+}
+.product-card:hover .product-image-wrap img{transform:scale(1.03)}
+.product-gradient-overlay{
+  position:absolute;bottom:0;left:0;right:0;height:40%;
+  background:linear-gradient(transparent, var(--canvas-elevated));
+}
+.product-body{padding:var(--space-5);flex:1;display:flex;flex-direction:column}
+.product-category{
+  display:inline-flex;align-items:center;gap:var(--space-1);
+  font-size:0.7rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;
+  padding:var(--space-1) var(--space-3);border-radius:var(--radius-sm);
+  margin-bottom:var(--space-3);width:fit-content;
+}
+.cat-premium{background:rgba(108,92,231,0.12);color:var(--primary-light);border:1px solid rgba(108,92,231,0.2);}
+.cat-dev{background:rgba(0,206,201,0.12);color:var(--secondary);border:1px solid rgba(0,206,201,0.2);}
+.cat-crypto{background:rgba(255,118,117,0.12);color:var(--accent-warm);border:1px solid rgba(255,118,117,0.2);}
+
+.product-title{font-size:1.25rem;font-weight:600;margin-bottom:var(--space-2)}
+.product-desc{color:var(--ink-secondary);font-size:0.88rem;line-height:1.6;flex:1}
+.product-features{list-style:none;margin:var(--space-4) 0 var(--space-5)}
+.product-features li{
+  font-size:0.82rem;color:var(--ink-muted);
+  padding:var(--space-1) 0 var(--space-1) var(--space-5);
+  position:relative;
+}
+.product-features li::before{
+  content:'';
+  position:absolute;left:0;top:10px;
+  width:5px;height:5px;border-radius:50%;
+  background:var(--primary-light);opacity:0.6;
+}
+.product-footer{
+  display:flex;justify-content:space-between;align-items:center;
+  padding-top:var(--space-4);border-top:1px solid var(--hairline);
+  gap:var(--space-2);flex-wrap:wrap;
+}
+.product-price{
+  font-size:1.6rem;font-weight:700;font-family:var(--font-mono);
+  color:var(--ink);
+}
+.product-price-original{
+  font-size:0.85rem;font-weight:400;color:var(--ink-muted);
+  text-decoration:line-through;margin-left:var(--space-2);
+}
+.product-actions{display:flex;gap:var(--space-2)}
+.btn-buy{
+  display:inline-flex;align-items:center;gap:var(--space-1);
+  padding:var(--space-2) var(--space-5);border-radius:var(--radius-pill);
+  font-weight:600;font-size:0.82rem;border:none;cursor:pointer;
+  transition:all 0.2s ease;text-decoration:none;color:white;
+}
+.btn-buy-primary{
+  background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+}
+.btn-buy-primary:hover{transform:scale(1.04);box-shadow:var(--shadow-glow)}
+.btn-buy-ghost{
+  background:transparent;color:var(--ink-muted);
+  border:1px solid var(--hairline-hover);
+}
+.btn-buy-ghost:hover{color:var(--ink);border-color:var(--primary-light)}
+
+/* ============================================
+   TRUST BADGES — Shopify-style
+   ============================================ */
+.trust-bar{
+  display:flex;flex-wrap:wrap;gap:var(--space-4);
+  justify-content:center;padding:var(--space-8) 0;
+}
+.trust-item{
+  display:flex;align-items:center;gap:var(--space-3);
+  background:var(--canvas-elevated);border:1px solid var(--hairline);
+  padding:var(--space-3) var(--space-5);border-radius:var(--radius-md);
+  transition:all 0.2s;
+}
+.trust-item:hover{border-color:var(--hairline-hover)}
+.trust-icon{
+  width:36px;height:36px;border-radius:var(--radius-sm);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.trust-icon svg{width:18px;height:18px}
+.trust-label{font-weight:600;font-size:0.85rem}
+.trust-desc{font-size:0.72rem;color:var(--ink-muted)}
+.trust-icon-lock{background:rgba(0,206,201,0.12);color:var(--secondary)}
+.trust-icon-zap{background:rgba(108,92,231,0.12);color:var(--primary-light)}
+.trust-icon-refresh{background:rgba(255,118,117,0.12);color:var(--accent-warm)}
+.trust-icon-coin{background:rgba(253,203,110,0.12);color:var(--warning)}
+
+/* ============================================
+   PAYMENT SECTION
+   ============================================ */
+.payment-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:var(--space-5);
+  max-width:800px;margin:0 auto;
+}
+.payment-card{
+  background:var(--canvas-elevated);
+  border:1px solid var(--hairline);
+  border-radius:var(--radius-lg);
+  padding:var(--space-6);
+  transition:all 0.3s;
+}
+.payment-card:hover{border-color:var(--hairline-hover);transform:translateY(-2px)}
+.payment-card-icon{
+  width:44px;height:44px;border-radius:var(--radius-sm);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:var(--space-4);
+}
+.payment-card-icon svg{width:22px;height:22px}
+.payment-card h3{font-size:1.1rem;margin-bottom:var(--space-2)}
+.payment-card p{color:var(--ink-secondary);font-size:0.88rem;line-height:1.6;margin-bottom:var(--space-4)}
+.payment-card .btn-primary{padding:var(--space-2) var(--space-6);font-size:0.9rem}
+.crypto-address{
+  font-family:var(--font-mono);font-size:0.75rem;
+  background:var(--canvas-alt);border:1px solid var(--hairline);
+  padding:var(--space-3);border-radius:var(--radius-sm);
+  color:var(--primary-light);word-break:break-all;
+  cursor:pointer;transition:all 0.2s;margin-bottom:var(--space-2);
+  user-select:all;
+}
+.crypto-address:hover{border-color:var(--primary);background:rgba(108,92,231,0.05)}
+.crypto-networks{font-size:0.72rem;color:var(--ink-muted)}
+.icon-paypal{background:rgba(0,156,222,0.12);color:#00A3E0}
+.icon-crypto{background:rgba(108,92,231,0.12);color:var(--primary-light)}
+.icon-email{background:rgba(0,206,201,0.12);color:var(--secondary)}
+
+/* ============================================
+   FOOTER — Linear-style
+   ============================================ */
+footer{
+  text-align:center;padding:var(--space-12) var(--space-6);
+  border-top:1px solid var(--hairline);
+  margin-top:var(--space-8);
+}
+footer p{color:var(--ink-muted);font-size:0.85rem;margin-bottom:var(--space-2)}
+footer a{color:var(--ink-secondary)}
+footer a:hover{color:var(--ink)}
+.footer-heart{color:var(--accent-warm)}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media(max-width:1024px){
+  .products-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+  .products-grid{grid-template-columns:1fr}
+  .payment-grid{grid-template-columns:1fr}
+  nav{flex-wrap:wrap;gap:var(--space-3)}
+  nav .nav-links{gap:var(--space-4)}
+  nav .nav-links a{font-size:0.82rem}
+  .hero-stats{gap:var(--space-8)}
+  .stat:not(:last-child)::after{display:none}
+  .product-footer{flex-direction:column;align-items:flex-start}
+  .product-actions{width:100%}
+  .product-actions .btn-buy{flex:1}
+  .section{padding:var(--space-16) var(--space-4)}
+}
+@media(max-width:480px){
+  nav .nav-links a.nav-link-hide{display:none}
+  .hero{padding:var(--space-4)}
 }
 
-.hero::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle at 30% 50%, rgba(0,204,255,0.03) 0%, transparent 50%),
-              radial-gradient(circle at 70% 50%, rgba(0,255,200,0.02) 0%, transparent 50%);
-  animation: float 20s ease-in-out infinite;
+/* ============================================
+   ANIMATIONS (transform/opacity only)
+   ============================================ */
+@media(prefers-reduced-motion:no-preference){
+  .reveal{opacity:0;transform:translateY(20px);transition:all 0.6s ease}
+  .reveal.visible{opacity:1;transform:translateY(0)}
+  .reveal-delay-1{transition-delay:0.1s}
+  .reveal-delay-2{transition-delay:0.2s}
+  .reveal-delay-3{transition-delay:0.3s}
+  .reveal-delay-4{transition-delay:0.4s}
+  .product-card{animation:fadeInUp 0.5s ease forwards;opacity:0}
+  .product-card:nth-child(1){animation-delay:0.1s}
+  .product-card:nth-child(2){animation-delay:0.25s}
+  .product-card:nth-child(3){animation-delay:0.4s}
+  .hero-content>*{animation:fadeInUp 0.6s ease forwards;opacity:0}
+  .hero-content>*:nth-child(1){animation-delay:0.1s}
+  .hero-content>*:nth-child(2){animation-delay:0.2s}
+  .hero-content>*:nth-child(3){animation-delay:0.3s}
+  .hero-content>*:nth-child(4){animation-delay:0.4s}
+  .hero-stats{animation:fadeInUp 0.8s ease 0.5s forwards;opacity:0}
 }
-
-@keyframes float {
-  0%, 100% { transform: translate(0, 0); }
-  50% { transform: translate(-2%, 2%); }
+@keyframes fadeInUp{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
 }
-
-.hero-badge {
-  display: inline-block;
-  background: rgba(0,204,255,0.1);
-  border: 1px solid rgba(0,204,255,0.3);
-  color: var(--accent);
-  padding: 8px 20px;
-  border-radius: 20px;
-  font-size: 0.85rem;
-  font-weight: 500;
-  margin-bottom: 2rem;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-
-.hero h1 {
-  font-size: clamp(2.5rem, 6vw, 5rem);
-  font-weight: 800;
-  margin-bottom: 1rem;
-  background: linear-gradient(135deg, #00ccff, #0088ff, #0044aa);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  line-height: 1.1;
-}
-
-.hero p {
-  font-size: clamp(1rem, 2vw, 1.3rem);
-  color: var(--text2);
-  max-width: 600px;
-  margin-bottom: 2rem;
-}
-
-.hero-cta {
-  display: inline-block;
-  background: var(--gradient1);
-  color: white;
-  text-decoration: none;
-  padding: 16px 40px;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 1.1rem;
-  transition: all 0.3s;
-  border: none;
-  cursor: pointer;
-}
-
-.hero-cta:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(0,204,255,0.3);
-}
-
-.hero-stats {
-  display: flex;
-  gap: 3rem;
-  margin-top: 3rem;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.stat {
-  text-align: center;
-}
-
-.stat-value {
-  font-size: 2rem;
-  font-weight: 800;
-  color: var(--accent);
-  font-family: 'JetBrains Mono', monospace;
-}
-
-.stat-label {
-  font-size: 0.85rem;
-  color: var(--text2);
-  margin-top: 4px;
-}
-
-/* PRODUCTS SECTION */
-.products-section {
-  padding: 5rem 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.section-title {
-  text-align: center;
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-}
-
-.section-subtitle {
-  text-align: center;
-  color: var(--text2);
-  font-size: 1.1rem;
-  margin-bottom: 4rem;
-}
-
-.products-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-  gap: 2rem;
-}
-
-.product-card {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  overflow: hidden;
-  transition: all 0.3s;
-}
-
-.product-card:hover {
-  border-color: var(--accent);
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(0,204,255,0.1);
-}
-
-.product-image {
-  width: 100%;
-  aspect-ratio: 2/3;
-  object-fit: cover;
-  display: block;
-  background: var(--bg3);
-}
-
-.product-body {
-  padding: 1.5rem;
-}
-
-.product-category {
-  display: inline-block;
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  padding: 4px 12px;
-  border-radius: 4px;
-  margin-bottom: 0.75rem;
-}
-
-.cat-blue { background: rgba(0,204,255,0.1); color: var(--accent); }
-.cat-green { background: rgba(0,255,200,0.1); color: var(--accent2); }
-.cat-gold { background: rgba(255,200,0,0.1); color: var(--accent3); }
-
-.product-title {
-  font-size: 1.3rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-}
-
-.product-description {
-  color: var(--text2);
-  font-size: 0.9rem;
-  margin-bottom: 1rem;
-  line-height: 1.5;
-}
-
-.product-features {
-  list-style: none;
-  margin-bottom: 1.5rem;
-}
-
-.product-features li {
-  font-size: 0.85rem;
-  color: var(--text2);
-  padding: 4px 0;
-  padding-left: 1.5rem;
-  position: relative;
-}
-
-.product-features li::before {
-  content: '>';
-  position: absolute;
-  left: 0;
-  color: var(--accent);
-  font-weight: 700;
-  font-family: 'JetBrains Mono', monospace;
-}
-
-.product-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-  padding-top: 1rem;
-  border-top: 1px solid var(--border);
-}
-
-.product-price {
-  font-size: 1.8rem;
-  font-weight: 800;
-  font-family: 'JetBrains Mono', monospace;
-}
-
-.product-price-original {
-  font-size: 0.9rem;
-  color: #666;
-  text-decoration: line-through;
-  margin-left: 8px;
-}
-
-.buy-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 24px;
-  border: none;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 0.9rem;
-  cursor: pointer;
-  text-decoration: none;
-  color: var(--bg);
-  transition: all 0.2s;
-}
-
-.buy-blue { background: var(--gradient1); }
-.buy-green { background: var(--gradient2); }
-.buy-gold { background: var(--gradient3); }
-.buy-ghost { background: var(--bg3); color: var(--text2); border: 1px solid var(--border); font-size: 0.8rem; padding: 10px 16px; }
-
-.buy-btn:hover {
-  transform: scale(1.05);
-}
-
-/* PAYMENT SECTION */
-.payment-section {
-  padding: 4rem 2rem;
-  max-width: 800px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.payment-methods {
-  display: flex;
-  gap: 1.5rem;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-top: 2rem;
-}
-
-.payment-card {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 2rem;
-  flex: 1;
-  min-width: 250px;
-  max-width: 350px;
-  transition: all 0.3s;
-}
-
-.payment-card:hover {
-  border-color: var(--accent);
-}
-
-.payment-card h3 {
-  font-size: 1.1rem;
-  margin-bottom: 0.5rem;
-}
-
-.payment-card p {
-  color: var(--text2);
-  font-size: 0.85rem;
-  margin-bottom: 1rem;
-}
-
-.payment-address {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.75rem;
-  background: var(--bg3);
-  padding: 12px;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  color: var(--accent);
-  word-break: break-all;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.payment-address:hover {
-  background: rgba(0,204,255,0.05);
-}
-
-/* FOOTER */
-footer {
-  text-align: center;
-  padding: 3rem 2rem;
-  color: var(--text2);
-  font-size: 0.85rem;
-  border-top: 1px solid var(--border);
-  margin-top: 2rem;
-}
-
-footer a {
-  color: var(--accent);
-  text-decoration: none;
-}
-
-/* NAV */
-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
-  padding: 1rem 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: rgba(7,11,20,0.9);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border);
-}
-
-nav .logo {
-  font-weight: 700;
-  font-size: 1.2rem;
-  color: var(--accent);
-  text-decoration: none;
-}
-
-nav .nav-links {
-  display: flex;
-  gap: 2rem;
-  align-items: center;
-}
-
-nav .nav-links a {
-  color: var(--text2);
-  text-decoration: none;
-  font-size: 0.9rem;
-  transition: color 0.2s;
-}
-
-nav .nav-links a:hover {
-  color: var(--accent);
-}
-
-/* RESPONSIVE */
-@media (max-width: 768px) {
-  .hero-stats { gap: 1.5rem; }
-  .products-grid { grid-template-columns: 1fr; }
-  .payment-methods { flex-direction: column; align-items: center; }
-  .product-footer { flex-direction: column; gap: 1rem; }
-}
-
-/* ANIMATIONS */
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.product-card {
-  animation: fadeInUp 0.6s ease forwards;
-}
-
-.product-card:nth-child(2) { animation-delay: 0.2s; }
-.product-card:nth-child(3) { animation-delay: 0.4s; }
 </style>
 </head>
 <body>
 
-<nav>
-  <a href="#" class="logo">~$ shirka-store</a>
+<!-- ============================================
+     NAVBAR
+     ============================================ -->
+<nav role="navigation" aria-label="Navegación principal">
+  <a href="#" class="logo" aria-label="Shirka AI Store inicio">
+    <span class="logo-mark" aria-hidden="true">S</span>
+    <span>shirka-store</span>
+  </a>
   <div class="nav-links">
-    <a href="#products">Productos</a>
-    <a href="#payment">Pago</a>
+    <a href="#products" class="nav-link-hide">Productos</a>
+    <a href="#payment" class="nav-link-hide">Pago</a>
     <a href="#contact">Contacto</a>
+    <a href="https://payhip.com/ShirkaAIStore" class="nav-cta" target="_blank" rel="noopener">
+      Tienda Payhip
+    </a>
   </div>
 </nav>
 
-<section class="hero">
-  <div class="hero-badge">AI-Powered Digital Products</div>
-  <h1>Herramientas creadas por IA<br>para potenciar tu productividad</h1>
-  <p>Prompts expertos, scripts profesionales y herramientas de trading crypto. Todo creado, curado y optimizado con inteligencia artificial.</p>
-  <a href="#products" class="hero-cta">Ver Productos</a>
-  <div class="hero-stats">
-    <div class="stat">
-      <div class="stat-value">3</div>
-      <div class="stat-label">Productos</div>
+<!-- ============================================
+     HERO
+     ============================================ -->
+<section class="hero" role="banner">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="hero-badge-dot" aria-hidden="true"></span>
+      AI-Powered Digital Products
     </div>
-    <div class="stat">
-      <div class="stat-value">500+</div>
-      <div class="stat-label">Prompts</div>
+    <h1>
+      Herramientas creadas por<br>
+      <span class="gradient-text">inteligencia artificial</span>
+    </h1>
+    <p>
+      Prompts expertos, scripts profesionales y herramientas de trading crypto.
+      Todo creado, curado y optimizado con IA para potenciar tu productividad.
+    </p>
+    <div class="hero-actions">
+      <a href="#products" class="btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        Ver Productos
+      </a>
+      <a href="https://payhip.com/ShirkaAIStore" class="btn-secondary" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+        Tienda Online
+      </a>
     </div>
-    <div class="stat">
-      <div class="stat-value">40+</div>
-      <div class="stat-label">Scripts</div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-value" aria-label="3 productos">3</div>
+        <div class="stat-label">Productos</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value" aria-label="500 prompts">500+</div>
+        <div class="stat-label">Prompts</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value" aria-label="40 scripts">40+</div>
+        <div class="stat-label">Scripts</div>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="products-section" id="products">
-  <h2 class="section-title">Nuestros Productos</h2>
-  <p class="section-subtitle">Selecciona, paga y descarga al instante</p>
-  
-  <div class="products-grid">
-    <!-- PRODUCTO 1 -->
-    <div class="product-card">
-      <img src="assets/prompt-vault-cover.jpg" 
-           alt="DeepSeek Prompt Vault" class="product-image">
-      <div class="product-body">
-        <span class="product-category cat-blue">PREMIUM PROMPT COLLECTION</span>
-        <h3 class="product-title">DeepSeek Prompt Vault</h3>
-        <p class="product-description">500 prompts expertos organizados en 25 categorías para desbloquear todo el potencial de DeepSeek AI.</p>
-        <ul class="product-features">
-          <li>Coding, ML, marketing, creative writing</li>
-          <li>25 categorías organizadas</li>
-          <li>Formato PDF + Markdown</li>
-          <li>Actualizaciones gratuitas</li>
-        </ul>
-        <div class="product-footer">
-          <div>
-            <span class="product-price">$12.50</span>
-            <span class="product-price-original">$29.99</span>
+<!-- ============================================
+     PRODUCTS
+     ============================================ -->
+<section class="section" id="products">
+  <div class="section-inner">
+    <div class="section-header">
+      <h2>Productos <span class="gradient-text">Premium</span></h2>
+      <p>Selecciona, paga y descarga al instante. Incluyen actualizaciones gratuitas.</p>
+    </div>
+
+    <div class="products-grid">
+      <!-- PRODUCTO 1: DeepSeek Prompt Vault (DESTACADO) -->
+      <article class="product-card featured" aria-label="DeepSeek Prompt Vault - producto destacado">
+        <div class="product-image-wrap">
+          <img src="assets/prompt-vault-cover.jpg" alt="DeepSeek Prompt Vault: 500 prompts expertos para IA" loading="lazy">
+          <div class="product-gradient-overlay" aria-hidden="true"></div>
+        </div>
+        <div class="product-body">
+          <span class="product-category cat-premium">Premium Prompt Collection</span>
+          <h3 class="product-title">DeepSeek Prompt Vault</h3>
+          <p class="product-desc">500 prompts expertos organizados en 25 categorías para desbloquear todo el potencial de DeepSeek AI y modelos similares.</p>
+          <ul class="product-features" aria-label="Características">
+            <li>Coding, ML, marketing, creative writing</li>
+            <li>25 categorías organizadas por uso</li>
+            <li>Formato PDF + Markdown descargable</li>
+            <li>Actualizaciones gratuitas de por vida</li>
+          </ul>
+          <div class="product-footer">
+            <div>
+              <span class="product-price" aria-label="Precio: 12 dólares con 50 centavos">$12.50</span>
+              <span class="product-price-original" aria-label="Precio original: 29 dólares con 99 centavos">$29.99</span>
+            </div>
+            <div class="product-actions">
+              <a href="https://payhip.com/ShirkaAIStore" class="btn-buy btn-buy-primary" target="_blank" rel="noopener" aria-label="Comprar DeepSeek Prompt Vault en Payhip">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                Comprar
+              </a>
+              <a href="https://www.paypal.me/jesussaleka/12.50" class="btn-buy btn-buy-ghost" target="_blank" rel="noopener" aria-label="Pagar con PayPal 12.50 dólares">
+                PayPal
+              </a>
+            </div>
           </div>
-          <a href="https://www.paypal.me/jesussaleka/12.50" 
-             class="buy-btn buy-blue" target="_blank">
-            Comprar con PayPal
-          </a>
-          <a href="products/prompt-vault.zip" class="buy-btn buy-ghost" download>Muestra</a>
+        </div>
+      </article>
+
+      <!-- PRODUCTO 2: Dev Productivity Bundle -->
+      <article class="product-card" aria-label="Dev Productivity Bundle">
+        <div class="product-image-wrap">
+          <img src="assets/dev-bundle-cover.jpg" alt="Dev Productivity Bundle: 40 scripts de automatización" loading="lazy">
+          <div class="product-gradient-overlay" aria-hidden="true"></div>
+        </div>
+        <div class="product-body">
+          <span class="product-category cat-dev">Developer Toolkit</span>
+          <h3 class="product-title">Dev Productivity Bundle</h3>
+          <p class="product-desc">40+ scripts profesionales en Python, Bash, Node.js y PowerShell para automatizar tu flujo de trabajo de desarrollo.</p>
+          <ul class="product-features" aria-label="Características">
+            <li>Automatización, DevOps, scraping, APIs</li>
+            <li>Código listo para usar y modificar</li>
+            <li>Documentación completa por script</li>
+            <li>Actualizaciones gratuitas de por vida</li>
+          </ul>
+          <div class="product-footer">
+            <div>
+              <span class="product-price" aria-label="Precio: 14 dólares con 50 centavos">$14.50</span>
+              <span class="product-price-original" aria-label="Precio original: 34 dólares con 99 centavos">$34.99</span>
+            </div>
+            <div class="product-actions">
+              <a href="https://payhip.com/ShirkaAIStore" class="btn-buy btn-buy-primary" target="_blank" rel="noopener" aria-label="Comprar Dev Productivity Bundle en Payhip">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                Comprar
+              </a>
+              <a href="https://www.paypal.me/jesussaleka/14.50" class="btn-buy btn-buy-ghost" target="_blank" rel="noopener" aria-label="Pagar con PayPal 14.50 dólares">
+                PayPal
+              </a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- PRODUCTO 3: Crypto Trading Toolkit -->
+      <article class="product-card" aria-label="Crypto Trading Toolkit">
+        <div class="product-image-wrap">
+          <img src="assets/crypto-toolkit-cover.jpg" alt="Crypto Trading Toolkit: señales y bots de trading" loading="lazy">
+          <div class="product-gradient-overlay" aria-hidden="true"></div>
+        </div>
+        <div class="product-body">
+          <span class="product-category cat-crypto">Crypto Trading Suite</span>
+          <h3 class="product-title">Crypto Trading Toolkit</h3>
+          <p class="product-desc">Señales, análisis y bots para operar en mercados crypto con ventaja estratégica y gestión de riesgo profesional.</p>
+          <ul class="product-features" aria-label="Características">
+            <li>Escáner multi-indicador en tiempo real</li>
+            <li>Backtesting framework completo</li>
+            <li>Bot paper trading para Binance</li>
+            <li>Gestión de riesgo profesional</li>
+          </ul>
+          <div class="product-footer">
+            <div>
+              <span class="product-price" aria-label="Precio: 17 dólares con 50 centavos">$17.50</span>
+              <span class="product-price-original" aria-label="Precio original: 39 dólares con 99 centavos">$39.99</span>
+            </div>
+            <div class="product-actions">
+              <a href="https://payhip.com/ShirkaAIStore" class="btn-buy btn-buy-primary" target="_blank" rel="noopener" aria-label="Comprar Crypto Trading Toolkit en Payhip">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                Comprar
+              </a>
+              <a href="https://www.paypal.me/jesussaleka/17.50" class="btn-buy btn-buy-ghost" target="_blank" rel="noopener" aria-label="Pagar con PayPal 17.50 dólares">
+                PayPal
+              </a>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     TRUST BADGES
+     ============================================ -->
+<section class="section" style="padding-top:0;padding-bottom:0" aria-label="Garantías">
+  <div class="section-inner">
+    <div class="trust-bar">
+      <div class="trust-item">
+        <div class="trust-icon trust-icon-lock" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+        <div>
+          <div class="trust-label">Pago Seguro</div>
+          <div class="trust-desc">PayPal protegido</div>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon trust-icon-zap" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        </div>
+        <div>
+          <div class="trust-label">Descarga Inmediata</div>
+          <div class="trust-desc">Tras confirmación de pago</div>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon trust-icon-refresh" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+        </div>
+        <div>
+          <div class="trust-label">Actualizaciones</div>
+          <div class="trust-desc">Gratuitas de por vida</div>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon trust-icon-coin" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <div>
+          <div class="trust-label">Crypto Aceptado</div>
+          <div class="trust-desc">ETH, USDC, más redes</div>
         </div>
       </div>
     </div>
+  </div>
+</section>
 
-    <!-- PRODUCTO 2 -->
-    <div class="product-card">
-      <img src="assets/dev-bundle-cover.jpg" 
-           alt="Dev Productivity Bundle" class="product-image">
-      <div class="product-body">
-        <span class="product-category cat-green">DEVELOPER TOOLKIT</span>
-        <h3 class="product-title">Dev Productivity Bundle</h3>
-        <p class="product-description">40+ scripts profesionales en Python, Bash, Node.js y PowerShell para automatizar tu flujo de trabajo.</p>
-        <ul class="product-features">
-          <li>Automatización, DevOps, scraping, API</li>
-          <li>Código listo para usar y modificar</li>
-          <li>Documentación completa por script</li>
-          <li>Actualizaciones gratuitas</li>
-        </ul>
-        <div class="product-footer">
-          <div>
-            <span class="product-price">$14.50</span>
-            <span class="product-price-original">$34.99</span>
-          </div>
-          <a href="https://www.paypal.me/jesussaleka/14.50" 
-             class="buy-btn buy-green" target="_blank">
-            Comprar con PayPal
-          </a>
-          <a href="products/dev-bundle.zip" class="buy-btn buy-ghost" download>Muestra</a>
+<!-- ============================================
+     PAYMENT METHODS
+     ============================================ -->
+<section class="section" id="payment">
+  <div class="section-inner">
+    <div class="section-header">
+      <h2>Métodos de <span class="gradient-text">Pago</span></h2>
+      <p>Elige el método que más te convenga para recibir tu producto al instante.</p>
+    </div>
+
+    <div class="payment-grid">
+      <div class="payment-card">
+        <div class="payment-card-icon icon-paypal" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.023.143-.047.288-.077.437-.983 5.05-4.349 6.797-8.647 6.797H9.75c-.399 0-.738.29-.802.681l-.872 5.324v.001z"/></svg>
         </div>
+        <h3>PayPal</h3>
+        <p>Paga con tu cuenta PayPal o tarjeta de crédito/débito. Recibirás el enlace de descarga por email tras el pago.</p>
+        <a href="https://www.paypal.me/jesussaleka" class="btn-primary" target="_blank" rel="noopener" style="font-size:0.9rem;padding:var(--space-2) var(--space-6)">
+          Pagar con PayPal
+        </a>
+        <p style="font-size:0.78rem;color:var(--ink-muted);margin-top:var(--space-3)">
+          También disponible en cada producto. Envíanos tu comprobante a shirka@netc.fr
+        </p>
       </div>
-    </div>
 
-    <!-- PRODUCTO 3 -->
-    <div class="product-card">
-      <img src="assets/crypto-toolkit-cover.jpg" 
-           alt="Crypto Trading Toolkit" class="product-image">
-      <div class="product-body">
-        <span class="product-category cat-gold">CRYPTO TRADING SUITE</span>
-        <h3 class="product-title">Crypto Trading Toolkit</h3>
-        <p class="product-description">Señales, análisis y bots para operar en mercados crypto con ventaja estratégica.</p>
-        <ul class="product-features">
-          <li>Escáner multi-indicador en tiempo real</li>
-          <li>Backtesting framework completo</li>
-          <li>Bot paper trading para Binance</li>
-          <li>Gestión de riesgo profesional</li>
-        </ul>
-        <div class="product-footer">
-          <div>
-            <span class="product-price">$17.50</span>
-            <span class="product-price-original">$39.99</span>
-          </div>
-          <a href="https://www.paypal.me/jesussaleka/17.50" 
-             class="buy-btn buy-gold" target="_blank">
-            Comprar con PayPal
-          </a>
-          <a href="products/crypto-toolkit.zip" class="buy-btn buy-ghost" download>Muestra</a>
+      <div class="payment-card">
+        <div class="payment-card-icon icon-crypto" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
         </div>
+        <h3>Criptomonedas</h3>
+        <p>Envía el monto exacto en USDC o ETH a la dirección de abajo. Incluye tu email en la transacción para recibir el producto.</p>
+        <div class="crypto-address" role="button" tabindex="0" aria-label="Dirección de wallet crypto. Click para copiar." onclick="copyCrypto(this)" onkeydown="if(event.key==='Enter')copyCrypto(this)">
+          0x9a47f3d6206401fa5dF667423c8616B93f4DEAE4
+        </div>
+        <p class="crypto-networks">Redes compatibles: Ethereum, Base, Arbitrum, Polygon, Optimism</p>
+      </div>
+
+      <div class="payment-card" id="contact" style="grid-column:1/-1;max-width:500px;margin:0 auto;">
+        <div class="payment-card-icon icon-email" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <h3>¿Problemas con tu compra?</h3>
+        <p>Escríbenos a <a href="mailto:shirka@netc.fr" style="color:var(--secondary);font-weight:500">shirka@netc.fr</a> y te responderemos en menos de 24 horas. También puedes comprar directamente en nuestra tienda online.</p>
+        <a href="https://payhip.com/ShirkaAIStore" class="btn-primary" target="_blank" rel="noopener" style="font-size:0.9rem;padding:var(--space-2) var(--space-6)">
+          Tienda Online Payhip
+        </a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- TRUST BADGES -->
-<section style="padding: 3rem 2rem; max-width: 900px; margin: 0 auto;">
-  <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; align-items: center;">
-    <div style="display: flex; align-items: center; gap: 0.8rem; background: var(--bg2); padding: 1rem 1.5rem; border-radius: 12px; border: 1px solid var(--border);">
-      <span style="font-size: 1.5rem;">🔒</span>
-      <div><div style="color: var(--accent2); font-weight: 600; font-size: 0.9rem;">Pago Seguro</div><div style="color: var(--text2); font-size: 0.75rem;">PayPal protegido</div></div>
-    </div>
-    <div style="display: flex; align-items: center; gap: 0.8rem; background: var(--bg2); padding: 1rem 1.5rem; border-radius: 12px; border: 1px solid var(--border);">
-      <span style="font-size: 1.5rem;">⚡</span>
-      <div><div style="color: var(--accent); font-weight: 600; font-size: 0.9rem;">Descarga Inmediata</div><div style="color: var(--text2); font-size: 0.75rem;">Tras confirmación</div></div>
-    </div>
-    <div style="display: flex; align-items: center; gap: 0.8rem; background: var(--bg2); padding: 1rem 1.5rem; border-radius: 12px; border: 1px solid var(--border);">
-      <span style="font-size: 1.5rem;">🔄</span>
-      <div><div style="color: var(--accent3); font-weight: 600; font-size: 0.9rem;">Actualizaciones</div><div style="color: var(--text2); font-size: 0.75rem;">Gratuitas de por vida</div></div>
-    </div>
-    <div style="display: flex; align-items: center; gap: 0.8rem; background: var(--bg2); padding: 1rem 1.5rem; border-radius: 12px; border: 1px solid var(--border);">
-      <span style="font-size: 1.5rem;">💳</span>
-      <div><div style="color: var(--text); font-weight: 600; font-size: 0.9rem;">Crypto</div><div style="color: var(--text2); font-size: 0.75rem;">ETH, USDC, más</div></div>
-    </div>
-  </div>
-</section>
-
-<section class="payment-section" id="payment">
-  <h2 class="section-title">Métodos de Pago</h2>
-  <p class="section-subtitle">Elige el que más te convenga</p>
-  
-  <div class="payment-methods">
-    <div class="payment-card">
-      <h3>PayPal</h3>
-      <p>Paga con tu cuenta PayPal o tarjeta de crédito. Recibirás el enlace de descarga por email tras el pago.</p>
-      <p style="font-size:0.8rem;color:var(--text2)">Envíanos un email después del pago a shirka@netc.fr con tu comprobante.</p>
-    </div>
-    
-    <div class="payment-card">
-      <h3>Crypto</h3>
-      <p>Envía el monto exacto en USDC o ETH a la dirección de abajo. Incluye tu email en la transacción para recibir el producto.</p>
-      <div class="payment-address" onclick="navigator.clipboard.writeText(this.textContent)">
-        0x9a47f3d6206401fa5dF667423c8616B93f4DEAE4
-      </div>
-      <p style="font-size:0.7rem;color:var(--text2);margin-top:8px">Redes: Ethereum, Base, Arbitrum, Polygon, Optimism</p>
-    </div>
-  </div>
-</section>
-
-<section class="payment-section" id="contact" style="padding-top:0">
-  <h2 class="section-title">Contacto</h2>
-  <p class="section-subtitle">¿Preguntas o problemas con tu compra?</p>
-  <div class="payment-card" style="max-width:500px;margin:2rem auto">
-    <p style="margin-bottom:1rem">Email: <a href="mailto:shirka@netc.fr" style="color:var(--accent);text-decoration:none">shirka@netc.fr</a></p>
-    <p style="font-size:0.85rem;color:var(--text2)">Respondemos en menos de 24 horas</p>
-  </div>
-</section>
-
-<footer>
+<!-- ============================================
+     FOOTER — Linear-style
+     ============================================ -->
+<footer role="contentinfo">
   <p>&copy; 2025 Shirka AI &mdash; Productos digitales potenciados por inteligencia artificial</p>
-  <p style="margin-top:8px">Hecho con <span style="color:var(--accent)">IA</span> para humanos</p>
+  <p>Hecho con <span class="footer-heart" aria-label="amor">&#9829;</span> e IA para humanos</p>
+  <p style="margin-top:var(--space-3)">
+    <a href="mailto:shirka@netc.fr">shirka@netc.fr</a>
+    &nbsp;&middot;&nbsp;
+    <a href="https://payhip.com/ShirkaAIStore" target="_blank" rel="noopener">Payhip Store</a>
+    &nbsp;&middot;&nbsp;
+    <a href="https://github.com/softcripto1-source/shirka-store" target="_blank" rel="noopener">GitHub</a>
+  </p>
 </footer>
 
+<!-- ============================================
+     JAVASCRIPT
+     ============================================ -->
 <script>
-// Smooth scroll
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    e.preventDefault();
-    document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:'smooth'});
+// Copy crypto address with feedback
+function copyCrypto(el) {
+  var address = el.textContent.trim();
+  navigator.clipboard.writeText(address).then(function() {
+    var original = el.textContent;
+    el.textContent = 'Copiado!';
+    el.style.borderColor = 'var(--success)';
+    el.style.color = 'var(--success)';
+    setTimeout(function() {
+      el.textContent = original;
+      el.style.borderColor = '';
+      el.style.color = '';
+    }, 2000);
+  });
+}
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+  a.addEventListener('click', function(e) {
+    var target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({behavior: 'smooth'});
+    }
   });
 });
 
-// Copiar direccion crypto
-document.querySelector('.payment-address')?.addEventListener('click', function() {
-  navigator.clipboard.writeText(this.textContent.trim());
-  this.textContent = 'Copiado!';
-  setTimeout(() => {
-    this.textContent = '0x9a47f3d6206401fa5dF667423c8616B93f4DEAE4';
-  }, 2000);
-});
+// Reveal on scroll (Intersection Observer)
+if ('IntersectionObserver' in window) {
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, {threshold: 0.1});
+
+  document.querySelectorAll('.reveal').forEach(function(el) {
+    observer.observe(el);
+  });
+}
 </script>
 
 </body>
